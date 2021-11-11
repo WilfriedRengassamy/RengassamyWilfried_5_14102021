@@ -1,88 +1,53 @@
-/*
-const getProducts = async () => {
-    await fetch("http://localhost:3000/api/products")
+const items = document.getElementById("items");
+let listItems;
+
+//Requete API
+const getItems = async () => {
+  await fetch("http://localhost:3000/api/products")
     .then((res) => res.json())
-    .then((data) => products = data );
-    console.log(products);
+    .then((data) => (listItems = data));
+  console.log(listItems);
 };
 
-const main = async () => {
-    await getproducts();
-}
-
-main();
-*/
-
-//requête sur le serveur
-fetch("http://localhost:3000/api/products")
-  .then(function(result) {
-    if (result.ok) {
-      console.log(result.json())
-      //result.json();
-    }
-  })
-  .then(function(products) {
-    console.log(products);
-  })
-  .catch(function(err) {
-    // Une erreur est survenue
-  });
-
-//interprêter la requête
-
-const products = result.json(products);
-
-// insérer dans html
-const productsPlacement = document.querySelector("#items").innerText = products;
-
-// créer des div avec les éléments du array testItems
-for(let product of products) {
-    let newDiv = document.createElement('div');
-    newDiv.classList.add('product_place');
-    let newTitle = createElement('h3');
-    newTitle.innerText = `${testItem.name}`;
-    let newInfo = document.createElement('p');
-    newInfo.innerText = `${testItem.id}
-    ${testItem.price} €`;
-    newDiv.append(newTitle);
-    newDiv.append(newInfo);
-    productsPlacement.append(newDiv);
+//Importer produits sur index.html
+const showItems = async () => {
+  await getItems();
 };
+
+//Appel de la fonction
+showItems();
 
 /*
-//création array test
-let testItems = [
-    {
-        name: "quasiquai",
-        id: 156843,
-        price: 19
-    },
-    {
-        name: "morino",
-        id: 237484,
-        price: 35
-    },
-    {
-        name: "poulinor",
-        id: 486288,
-        price: 31
-    },
-];
+let listItems;
 
-// insérer dans html
-const productsPlacement = document.querySelector("#items").innerText = products;
+//Requete API
+const getItems = async () => {
+  listItems = await fetch("http://localhost:3000/api/products").then((res) =>
+    res.json()
+  );
 
-// créer des div avec les éléments du array testItems
-for(let product of products) {
-    let newDiv = document.createElement('div');
-    newDiv.classList.add('product_place');
-    let newTitle = createElement('h3');
-    newTitle.innerText = `${testItem.name}`;
-    let newInfo = document.createElement('p');
-    newInfo.innerText = `${testItem.id}
-    ${testItem.price} €`;
-    newDiv.append(newTitle);
-    newDiv.append(newInfo);
-    productsPlacement.append(newDiv);
+  //console.log(listItems);
 };
-*/
+
+//Importer produits sur index.html
+const showItems = async () => {
+  await getItems();
+
+  items.innerHTML = listItems
+    .map(
+      (item) =>
+        `
+          <a href="./product.html?id=${item._id}">
+          <article>
+            <img src="${item.imageUrl}" alt="${item.altTxt}">
+            <h3 class="productName">${item.name}</h3>
+            <p class="productDescription">${item.description}</p>
+          </article>
+          </a>
+        `
+    )
+    .join(""); //permet de remplacer la virgule qui sépare les éléments par un espace
+};
+
+//Appeler la fonction d'affichage des produits
+showItems();*/
