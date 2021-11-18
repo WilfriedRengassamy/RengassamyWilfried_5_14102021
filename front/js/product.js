@@ -19,9 +19,9 @@ async function getItem() {
 //Test affichage éléments vers product.html
 function showItemImg() {
   let itemPic = document.getElementsByClassName("item__img");
-  itemPic.src = product.imageUrl;
-  let item = document.getElementsByClassName("item");
+  itemPic[0].src = "../../back/images/kanap01.jpeg";
+  //let item = document.getElementsByClassName("item");
   console.log(itemPic);
-  item.appendChild(itemPic);
+  itemPic.append(itemPic);
 }
 showItemImg();
