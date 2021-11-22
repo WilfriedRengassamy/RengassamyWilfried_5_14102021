@@ -38,7 +38,7 @@ const showItem = async () => {
   let itemDescription = document.getElementById("description");
   itemDescription.append(item.description);
 
-  //définit les couleurs sélectionnable pour le produit
+  //définit les couleurs sélectionnables pour le produit
   let colorsList = document.getElementById("colors");
   let colors = item.colors;
   for (let i = 0; i < colors.length; i++) {
@@ -49,3 +49,15 @@ const showItem = async () => {
   }
 };
 showItem();
+
+//définition de l'array selectProduct
+
+//entrer le nom du produit selectName
+let selectName = item[name];
+//sélection et enregistrement de la couleur selectColor
+
+//sélection et enregistrement du nombre d'exemplaire selectQuantity
+
+//stockage en localStorage des données de l'array saveProduct
+let saveProduct = JSON.stringify(selectProduct);
+localStorage.setItem("obj", saveProduct);
