@@ -75,6 +75,7 @@ let quantitySelection = document.getElementById("quantity");
 quantitySelection.addEventListener("change", function (event) {
   let selectQuantity = event.target.value;
   // enregistrement de la quantité sélectionnée selectQuantity dans selectProduct
+  selectProduct.pop(selectQuantity);
   selectProduct.push(selectQuantity);
 });
 
