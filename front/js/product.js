@@ -69,7 +69,14 @@ colorSelection.addEventListener("change", function () {
   // enregistrement de la couleur sélectionnée selectColor dans selectProduct
   selectProduct.push(selectColor);
 });
+
 //sélection et enregistrement du nombre d'exemplaire selectQuantity
+let quantitySelection = document.getElementById("quantity");
+quantitySelection.addEventListener("change", function (event) {
+  let selectQuantity = event.target.value;
+  // enregistrement de la quantité sélectionnée selectQuantity dans selectProduct
+  selectProduct.push(selectQuantity);
+});
 
 //stockage en localStorage des données de l'array addToCart
 let addToCart = JSON.stringify(selectProduct);
