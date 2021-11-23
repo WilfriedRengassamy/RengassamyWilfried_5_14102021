@@ -51,13 +51,26 @@ const showItem = async () => {
 showItem();
 
 //définition de l'array selectProduct
+let selectProduct = [];
 
-//entrer le nom du produit selectName
-let selectName = item[name];
-//sélection et enregistrement de la couleur selectColor
+//entrer le nom selectName du produit dans selectProduct
+let selectName = document.getElementById("title");
+selectProduct.push(selectName);
 
+//entrer le prix selectPrice du produit dans selectProduct
+let selectPrice = document.getElementById("price");
+selectProduct.push(selectPrice);
+
+//sélection de la couleur selectColor
+let colorSelection = document.getElementById("colors");
+// Quand une couleur (option) est selectionnée
+colorSelection.addEventListener("change", function () {
+  let selectColor = colorSelection.options[colorSelection.selectedIndex].value;
+  // enregistrement de la couleur sélectionnée selectColor dans selectProduct
+  selectProduct.push(selectColor);
+});
 //sélection et enregistrement du nombre d'exemplaire selectQuantity
 
-//stockage en localStorage des données de l'array saveProduct
-let saveProduct = JSON.stringify(selectProduct);
-localStorage.setItem("obj", saveProduct);
+//stockage en localStorage des données de l'array addToCart
+let addToCart = JSON.stringify(selectProduct);
+localStorage.setItem("obj", addToCart);
