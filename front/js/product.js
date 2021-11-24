@@ -52,33 +52,42 @@ showItem();
 
 //définition de l'array selectProduct
 let selectProduct = [];
+selectProduct.length = 4;
 
 //entrer le nom selectName du produit dans selectProduct
-let selectName = document.getElementById("title");
-selectProduct.push(selectName);
+const productselection = async () => {
+  await getItem();
+  let selectName = document.getElementById("title").textContent;
+  selectProduct[0] = selectName;
 
-//entrer le prix selectPrice du produit dans selectProduct
-let selectPrice = document.getElementById("price");
-selectProduct.push(selectPrice);
+  //entrer le prix selectPrice du produit dans selectProduct
+  let selectPrice = document.getElementById("price").textContent;
+  selectProduct[1] = selectPrice;
 
-//sélection de la couleur selectColor
-let colorSelection = document.getElementById("colors");
-// Quand une couleur (option) est selectionnée
-colorSelection.addEventListener("change", function () {
-  let selectColor = colorSelection.options[colorSelection.selectedIndex].value;
-  // enregistrement de la couleur sélectionnée selectColor dans selectProduct
-  selectProduct.push(selectColor);
-});
+  //sélection de la couleur selectColor
+  let colorSelection = document.getElementById("colors");
+  // Quand une couleur (option) est selectionnée
+  colorSelection.addEventListener("change", function () {
+    let selectColor =
+      colorSelection.options[colorSelection.selectedIndex].value;
+    // enregistrement de la couleur sélectionnée selectColor dans selectProduct
+    selectProduct[2] = selectColor;
+  });
 
-//sélection et enregistrement du nombre d'exemplaire selectQuantity
-let quantitySelection = document.getElementById("quantity");
-quantitySelection.addEventListener("change", function (event) {
-  let selectQuantity = event.target.value;
-  // enregistrement de la quantité sélectionnée selectQuantity dans selectProduct
-  selectProduct.pop(selectQuantity);
-  selectProduct.push(selectQuantity);
-});
+  //sélection et enregistrement du nombre d'exemplaire selectQuantity
+  let quantitySelection = document.getElementById("quantity");
+  quantitySelection.addEventListener("change", function (event) {
+    let selectQuantity = event.target.value;
+    // enregistrement de la quantité sélectionnée selectQuantity dans selectProduct
+    selectProduct[3] = selectQuantity;
+  });
+};
+productselection();
 
 //stockage en localStorage des données de l'array addToCart
 let addToCart = JSON.stringify(selectProduct);
 localStorage.setItem("obj", addToCart);
+
+//Boolean : si selectColor = null alors alert "choix couleur avant ajout au panier"
+
+//Boolean : si selectQuantity = null alors alert "choix quantité avant ajout au panier"
