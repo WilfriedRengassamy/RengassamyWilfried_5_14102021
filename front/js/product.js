@@ -85,9 +85,18 @@ const productselection = async () => {
 productselection();
 
 //stockage en localStorage des données de l'array addToCart
-let addToCart = JSON.stringify(selectProduct);
-localStorage.setItem("obj", addToCart);
+let addToCartButton = document.getElementById("addToCart");
+addToCartButton.addEventListener("click", function () {
+  //Boolean : si selectColor = null alors alert "choix couleur avant ajout au panier"
+  if ((selectProduct[2] = null)) {
+    alert("Veuillez sélectionner une couleur !");
+  }
 
-//Boolean : si selectColor = null alors alert "choix couleur avant ajout au panier"
-
-//Boolean : si selectQuantity = null alors alert "choix quantité avant ajout au panier"
+  //Boolean : si selectQuantity = null alors alert "choix quantité avant ajout au panier"
+  else if ((selectProduct[3] = null)) {
+    alert("Veuillez sélectionner une quantité !");
+  } else {
+    let addToCart = JSON.stringify(selectProduct);
+    localStorage.setItem("obj", addToCart);
+  }
+});
