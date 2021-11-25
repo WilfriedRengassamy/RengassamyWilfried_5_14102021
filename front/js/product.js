@@ -54,6 +54,24 @@ showItem();
 let selectProduct = [];
 selectProduct.length = 4;
 
+/*
+// selection de la couleur selectColor
+let colorSelection = document.getElementById("colors");
+let selectColor = colorSelection.options[colorSelection.selectedIndex].value;
+
+// sélection du nombre d'exemplaires selectQuantity
+let quantitySelection = document.getElementById("quantity");
+quantitySelection.addEventListener("change", function (event) {
+  let selectQuantity = event.target.value;
+});
+
+// rentrer les index et valeurs de selectProduct
+selectProduct[0] = item.name;
+selectProduct[1] = item.price;
+selectProduct[2] = selectColor;
+selectProduct[3] = selectQuantity;
+*/
+
 //entrer le nom selectName du produit dans selectProduct
 const productselection = async () => {
   await getItem();
@@ -88,12 +106,12 @@ productselection();
 let addToCartButton = document.getElementById("addToCart");
 addToCartButton.addEventListener("click", function () {
   //Boolean : si selectColor = null alors alert "choix couleur avant ajout au panier"
-  if ((selectProduct[2] = null)) {
+  if (selectProduct[2] == null) {
     alert("Veuillez sélectionner une couleur !");
   }
 
   //Boolean : si selectQuantity = null alors alert "choix quantité avant ajout au panier"
-  else if ((selectProduct[3] = null)) {
+  else if (selectProduct[3] == null) {
     alert("Veuillez sélectionner une quantité !");
   } else {
     let addToCart = JSON.stringify(selectProduct);
