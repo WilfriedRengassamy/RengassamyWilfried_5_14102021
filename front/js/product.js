@@ -57,11 +57,9 @@ let addToCart = localStorage.getItem("cart");
 
 let addToCartButton = document.getElementById("addToCart");
 addToCartButton.addEventListener("click", function () {
-  // valeurs déjà chargés
+  // valeurs déjà chargées
   let selectName = item.name;
   let selectPrice = item.price;
-  let colorValue;
-  let quantitySelect;
 
   // valeurs choisis par l'utilisateur si elles sont renseignées
   let colorSelection = document.getElementById("colors");
@@ -70,6 +68,7 @@ addToCartButton.addEventListener("click", function () {
   } else {
     colorValue = colorSelection.options[colorSelection.selectedIndex].value;
   }
+  let quantitySelect = document.getElementById("quantity");
   if (quantitySelect == null) {
     alert("Veuillez sélectionner une quantité !");
   } else {
@@ -79,6 +78,7 @@ addToCartButton.addEventListener("click", function () {
   let selectedItem = {
     id: item._id,
     name: selectName,
+    price: selectPrice,
     color: colorValue,
     quantity: quantitySelect,
   };
@@ -89,7 +89,7 @@ addToCartButton.addEventListener("click", function () {
   } else {
     // parcourir le tableau pour vérifier si le produit sélectionné existe déjà, ainsi modifier sa quantité
     for (let i in addToCart) {
-      if (addToCart.selectedItem.id == selectedItem)
+      if (addToCart.selectedItem.id == selectedItem.id)
         and(addToCart.selectedItem.color == selectedItem.color);
       addToCart.selectedItem.quantity += selectedItem.quantity;
     }
