@@ -4,7 +4,7 @@ const searchParams = new URLSearchParams(itemUrlId);
 
 let itemId = itemUrlId.substr(4);
 let item;
-
+//---------------------------------------------- Première Fonction : Récupérer et afficher le produit-----------------------------------//
 //Requête de l'API
 const getItem = async () => {
   await fetch("http://localhost:3000/api/products/" + itemId)
@@ -50,79 +50,51 @@ const showItem = async () => {
 };
 showItem();
 
-//définition de l'array selectProduct
-let selectProduct = [];
-selectProduct.length = 4;
+//---------------------------------------------- Deuxième Fonction : OnClick ajouter le produit au panier(localStorage)-----------------//
 
-let addToCart = [];
+// au loading de la page on récupère le contenu du localStorage
+let addToCart = localStorage.getItem("cart");
 
-/*
-// selection de la couleur selectColor
-let colorSelection = document.getElementById("colors");
-let selectColor = colorSelection.options[colorSelection.selectedIndex].value;
-
-// sélection du nombre d'exemplaires selectQuantity
-let quantitySelection = document.getElementById("quantity");
-quantitySelection.addEventListener("change", function (event) {
-  let selectQuantity = event.target.value;
-});
-
-// rentrer les index et valeurs de selectProduct
-selectProduct[0] = item.name;
-selectProduct[1] = item.price;
-selectProduct[2] = selectColor;
-selectProduct[3] = selectQuantity;
-*/
-
-//entrer le nom selectName du produit dans selectProduct
-const productselection = async () => {
-  await getItem();
-  let selectName = document.getElementById("title").textContent;
-  selectProduct[0] = selectName;
-
-  //entrer le prix selectPrice du produit dans selectProduct
-  let selectPrice = document.getElementById("price").textContent;
-  selectProduct[1] = selectPrice;
-
-  //sélection de la couleur selectColor
-  let colorSelection = document.getElementById("colors");
-  // Quand une couleur (option) est selectionnée
-  colorSelection.addEventListener("change", function () {
-    let selectColor =
-      colorSelection.options[colorSelection.selectedIndex].value;
-    // enregistrement de la couleur sélectionnée selectColor dans selectProduct
-    selectProduct[2] = selectColor;
-  });
-
-  //sélection et enregistrement du nombre d'exemplaire selectQuantity
-  let quantitySelection = document.getElementById("quantity");
-  quantitySelection.addEventListener("change", function (event) {
-    let selectQuantity = event.target.value;
-    // enregistrement de la quantité sélectionnée selectQuantity dans selectProduct
-    selectProduct[3] = selectQuantity;
-  });
-};
-productselection();
-
-/* si le nouveau selectProduct de addToCart est rigoureusement identique à un selectProduct existant
-   Ne pas l'ajouter */
-
-// Sinon ajouter le nouveau selectProduct dans addToCart
-addToCart.push(selectProduct);
-
-//stockage en localStorage des données de l'array cart
 let addToCartButton = document.getElementById("addToCart");
 addToCartButton.addEventListener("click", function () {
-  //Boolean : si selectColor = null alors alert "choix couleur avant ajout au panier"
-  if (selectProduct[2] == null) {
-    alert("Veuillez sélectionner une couleur !");
-  }
+  // valeurs déjà chargés
+  let selectName = item.name;
+  let selectPrice = item.price;
+  let colorValue;
+  let quantitySelect;
 
-  //Boolean : si selectQuantity = null alors alert "choix quantité avant ajout au panier"
-  else if (selectProduct[3] == null) {
+  // valeurs choisis par l'utilisateur si elles sont renseignées
+  let colorSelection = document.getElementById("colors");
+  if (colorSelection == null) {
+    alert("Veuillez sélectionner une couleur!");
+  } else {
+    colorValue = colorSelection.options[colorSelection.selectedIndex].value;
+  }
+  if (quantitySelect == null) {
     alert("Veuillez sélectionner une quantité !");
   } else {
-    let cart = JSON.stringify(addToCart);
-    localStorage.setItem("obj", cart);
+    quantitySelect = document.getElementById("quantity").value;
   }
+
+  let selectedItem = {
+    id: item._id,
+    name: selectName,
+    color: colorValue,
+    quantity: quantitySelect,
+  };
+
+  if (addToCart == null) {
+    // construire le tableau addToCart
+    addToCart = [selectedItem];
+  } else {
+    // parcourir le tableau pour vérifier si le produit sélectionné existe déjà, ainsi modifier sa quantité
+    for (let i in addToCart) {
+      if (addToCart.selectedItem.id == selectedItem)
+        and(addToCart.selectedItem.color == selectedItem.color);
+      addToCart.selectedItem.quantity += selectedItem.quantity;
+    }
+  }
+
+  // enfin remettre le tableau dans le localStorage
+  localStorage.setItem("cart", addToCart);
 });
