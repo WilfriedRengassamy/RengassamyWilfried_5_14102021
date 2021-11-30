@@ -1,9 +1,9 @@
 let cartItems = document.getElementById("cart__items");
 let item;
 
-//localStorage.getItem("cart");
+let cart = localStorage.getItem("cart");
 
-let cart = [
+/*let cart = [
   {
     id: "1458PM44",
     name: "Caribou Solex",
@@ -26,6 +26,7 @@ let cart = [
     quantity: 1,
   },
 ];
+*/
 
 //------------------------------------------------- Afficher le panier ---------------------------------------------------------------
 
