@@ -27,6 +27,8 @@ let cart = [
   },
 ];
 
+//------------------------------------------------- Afficher le panier ---------------------------------------------------------------
+
 let itemPrice;
 
 for (item of cart) {
@@ -65,3 +67,5 @@ cartItems.innerHTML = cart
 
 let totalQuantity = document.getElementById("totalQuantity");
 let cartPrice = document.getElementById("totalPrice");
+
+//----------------------------------------------- Travailler sur le formulaire -------------------------------------------------------
