@@ -77,6 +77,8 @@ addToCartButton.addEventListener("click", function () {
 
   let selectedItem = {
     id: item._id,
+    imageUrl: item.imageUrl,
+    altTxt: item.altTxt,
     name: selectName,
     price: selectPrice,
     color: colorValue,
