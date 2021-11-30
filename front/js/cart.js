@@ -27,6 +27,14 @@ let cart = [
   },
 ];
 
+let itemPrice;
+
+for (item of cart) {
+  let modifiedQuantity = document.getElementsByClassName("itemQUantity");
+  modifiedQUantity = document.getElementsByClassName("itemQuantity").value;
+  itemPrice = item.price * modifiedQuantity;
+}
+
 cartItems.innerHTML = cart
   .map(
     (item) =>
@@ -38,7 +46,7 @@ cartItems.innerHTML = cart
   <div class="cart__item__content">
     <div class="cart__item__content__titlePrice">
       <h2>${item.name}</h2>
-      <p>${item.price}</p>
+      <p>${itemPrice}</p>
     </div>
     <div class="cart__item__content__settings">
       <div class="cart__item__content__settings__quantity">
@@ -54,3 +62,6 @@ cartItems.innerHTML = cart
 `
   )
   .join("");
+
+let totalQuantity = document.getElementById("totalQuantity");
+let cartPrice = document.getElementById("totalPrice");
