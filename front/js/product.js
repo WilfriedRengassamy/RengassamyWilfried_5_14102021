@@ -4,7 +4,7 @@ const searchParams = new URLSearchParams(itemUrlId);
 
 let itemId = itemUrlId.substr(4);
 let item;
-//---------------------------------------------- Première Fonction : Récupérer et afficher le produit-----------------------------------//
+//---------------------------------------------- Récupérer et afficher le produit------------------------------------------------------
 //Requête de l'API
 const getItem = async () => {
   await fetch("http://localhost:3000/api/products/" + itemId)
@@ -50,7 +50,7 @@ const showItem = async () => {
 };
 showItem();
 
-//---------------------------------------------- Deuxième Fonction : OnClick ajouter le produit au panier(localStorage)-----------------//
+//---------------------------------------------- Ajouter le produit au panier(localStorage)--------------------------------------------
 
 // au loading de la page on récupère le contenu du localStorage
 let addToCart = localStorage.getItem("cart");
