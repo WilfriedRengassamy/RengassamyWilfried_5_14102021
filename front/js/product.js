@@ -94,7 +94,13 @@ addToCartButton.addEventListener("click", function () {
       cartItem.id === selectedItem.id &&
       cartItem.color === selectedItem.color
     ) {
-      cartItem.quantity += selectedItem.quantity;
+      function extractNumber(str) {
+        return Number(str.replace(/[^\d]/g, ""));
+      }
+      let previousQuantity = extractNumber(cartItem.quantity);
+      let newQuantity = extractNumber(selectedItem.quantity);
+      let addQuantity = previousQuantity + newQuantity;
+      cartItem.quantity = addQuantity;
     } else {
       let newCartItem = addToCart.push(selectedItem);
     }
