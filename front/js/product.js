@@ -89,12 +89,14 @@ addToCartButton.addEventListener("click", function () {
     addToCart = [selectedItem];
   }
   // parcourir le tableau pour vérifier si le produit sélectionné existe déjà, ainsi modifier sa quantité
-  while (
-    addToCart["entries"].id == selectedItem.id &&
-    addTocart["entries"].color == selectedItem.color
+  if (
+    addToCart["id"] == selectedItem.id &&
+    addTocart["color"] == selectedItem.color
   ) {
-    addToCart["entries"].quantity += selectedItem.quantity;
-  }
+    addToCart["quantity"] += selectedItem.quantity;
+  } /*else {
+    addToCart.push(selectedItem);
+  }*/
 
   // enfin remettre le tableau dans le localStorage
   let cart = JSON.stringify(addToCart);
