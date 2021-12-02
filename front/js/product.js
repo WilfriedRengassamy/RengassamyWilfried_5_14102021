@@ -89,14 +89,16 @@ addToCartButton.addEventListener("click", function () {
     addToCart = [selectedItem];
   }
   // parcourir le tableau pour vérifier si le produit sélectionné existe déjà, ainsi modifier sa quantité
-  if (
-    addToCart["id"] == selectedItem.id &&
-    addTocart["color"] == selectedItem.color
-  ) {
-    addToCart["quantity"] += selectedItem.quantity;
-  } /*else {
-    addToCart.push(selectedItem);
-  }*/
+  for (let cartItem of addToCart) {
+    if (
+      cartItem.id == selectedItem.id &&
+      cartItem.color == selectedItem.color
+    ) {
+      cartItem.quantity += selectedItem.quantity;
+    } else {
+      let newCartItem = addToCart.push(selectedItem);
+    }
+  }
 
   // enfin remettre le tableau dans le localStorage
   let cart = JSON.stringify(addToCart);
