@@ -91,8 +91,8 @@ addToCartButton.addEventListener("click", function () {
   // parcourir le tableau pour vérifier si le produit sélectionné existe déjà, ainsi modifier sa quantité
   for (let cartItem of addToCart) {
     if (
-      cartItem.id == selectedItem.id &&
-      cartItem.color == selectedItem.color
+      cartItem.id === selectedItem.id &&
+      cartItem.color === selectedItem.color
     ) {
       cartItem.quantity += selectedItem.quantity;
     } else {
