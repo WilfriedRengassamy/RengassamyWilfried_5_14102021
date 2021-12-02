@@ -1,11 +1,13 @@
 let cartItems = document.getElementById("cart__items");
 let item;
 
-let cart = localStorage.getItem["cart"];
+//récupérer le localStorage sous forme d'array
+let cartLinea = localStorage["cart"];
+let cart = JSON.parse(cartLinea);
 
 //------------------------------------------------- Afficher le panier ---------------------------------------------------------------
 
-cartItems.innerHTML = cart
+/*cartItems.innerHTML = cart
   .map(
     (item) =>
       `
@@ -35,5 +37,17 @@ cartItems.innerHTML = cart
 
 let totalQuantity = document.getElementById("totalQuantity");
 let cartPrice = document.getElementById("totalPrice");
+*/
+for (let i of cart) {
+  let cartItem = document.createElement("article");
+  cartItem.setAttribute("class", "cart__item");
+  cartItem.setAttribute("data-id", item.id);
+  let cartItemImgDiv = document.createElement("div");
+  let cartItemImg = document.createElement("img");
+  cartItemImg.setAttribute("src", item.imageUrl);
+  cartItemImg.setAttribute("alt", item.altTxt);
+  cartItemImgDiv.appendChild(cartItemImg);
+  cartItem.appendChild(cartItemImgDiv);
+}
 
 //----------------------------------------------- Travailler sur le formulaire -------------------------------------------------------
