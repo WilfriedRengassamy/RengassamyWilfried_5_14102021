@@ -1,42 +1,9 @@
 let cartItems = document.getElementById("cart__items");
 let item;
 
-let cart = localStorage.getItem("cart");
-
-/*let cart = [
-  {
-    id: "1458PM44",
-    name: "Caribou Solex",
-    price: 1044,
-    color: "brun",
-    quantity: 1,
-  },
-  {
-    id: "2879AM58",
-    name: "Beetle Juices",
-    price: 857,
-    color: "bleu",
-    quantity: 2,
-  },
-  {
-    id: "7599JG65",
-    name: "Yeti Arthax",
-    price: 1044,
-    color: "noir",
-    quantity: 1,
-  },
-];
-*/
+let cart = localStorage.getItem["cart"];
 
 //------------------------------------------------- Afficher le panier ---------------------------------------------------------------
-
-let itemPrice;
-
-for (item of cart) {
-  let modifiedQuantity = document.getElementsByClassName("itemQUantity");
-  modifiedQUantity = document.getElementsByClassName("itemQuantity").value;
-  itemPrice = item.price * modifiedQuantity;
-}
 
 cartItems.innerHTML = cart
   .map(
@@ -49,7 +16,7 @@ cartItems.innerHTML = cart
   <div class="cart__item__content">
     <div class="cart__item__content__titlePrice">
       <h2>${item.name}</h2>
-      <p>${itemPrice}</p>
+      <p>${item.price}</p>
     </div>
     <div class="cart__item__content__settings">
       <div class="cart__item__content__settings__quantity">
