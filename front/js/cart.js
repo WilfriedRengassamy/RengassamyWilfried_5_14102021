@@ -94,4 +94,20 @@ for (let item of cart) {
   cartItemContentSettingsDeleteItem.append("Supprimer");
 }
 
+//------------------------------------------------ Calculer le total des prix --------------------------------------------------------
+
+let cartPrice = document.getElementsByClassName("cart__price");
+
 //----------------------------------------------- Travailler sur le formulaire -------------------------------------------------------
+
+// les champs prénom, nom et ville n'accèptent que des lettres et des tirets
+let formFirstName = document.getElementById("firstName");
+formFirstName.addEventListener("onChange", function (e) {
+  let fistNameValue = e.target.value;
+  if (value) {
+    isValid = true;
+  } else {
+    isValid = false;
+    alert("N'utilisez que des lettres et tirets!");
+  }
+});
