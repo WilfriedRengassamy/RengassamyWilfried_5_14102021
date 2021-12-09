@@ -54,6 +54,11 @@ showItem();
 
 // au loading de la page on récupère le contenu du localStorage
 let addToCart = localStorage.getItem("cart");
+if (addToCart) {
+  addToCart = JSON.parse(addToCart);
+} else {
+  addToCart = [];
+}
 
 let addToCartButton = document.getElementById("addToCart");
 addToCartButton.addEventListener("click", function () {
@@ -84,23 +89,24 @@ addToCartButton.addEventListener("click", function () {
     quantity: quantitySelect,
   };
 
-  if (addToCart == null) {
+  if (addToCart.length == 0) {
     // construire le tableau addToCart
     addToCart = [selectedItem];
-  }
-  // parcourir le tableau pour vérifier si le produit sélectionné existe déjà, ainsi modifier sa quantité
-  for (let cartItem of addToCart) {
-    if (
-      cartItem.id === selectedItem.id &&
-      cartItem.color === selectedItem.color
-    ) {
-      function extractNumber(str) {
-        return Number(str.replace(/[^\d]/g, ""));
+  } else {
+    let found = false;
+    // parcourir le tableau pour vérifier si le produit sélectionné existe déjà, ainsi modifier sa quantité
+    for (let cartItem of addToCart) {
+      if (
+        cartItem.id === selectedItem.id &&
+        cartItem.color === selectedItem.color
+      ) {
+        found = true;
+        cartItem.quantity =
+          parseInt(cartItem.quantity) + parseInt(selectedItem.quantity);
       }
-      cartItem.quantity =
-        extractNumber(cartItem.quantity) + extractNumber(selectedItem.quantity);
-    } else {
-      let newCartItem = addToCart.push(selectedItem);
+    }
+    if (!found) {
+      addToCart.push(selectedItem);
     }
   }
 
