@@ -51,9 +51,9 @@ for (let item of cart) {
   let cartItemContent = document.createElement("div");
   cartItemContent.classList.add("cart__item__content");
   let cartItemContentTitlePrice = document.createElement("div");
-  cartItemContentTitlePrice.classList.add("cart__content__titlePrice");
+  cartItemContentTitlePrice.classList.add("cart__item__content__titlePrice");
   let cartItemContentItemName = document.createElement("h2");
-  let cartItemContenItemPrice = document.createElement("p");
+  let cartItemContentItemPrice = document.createElement("p");
   let cartItemContentSettings = document.createElement("div");
   cartItemContentSettings.classList.add("cart__item__content__settings");
   let cartItemContentSettingsQuantity = document.createElement("div");
@@ -64,6 +64,9 @@ for (let item of cart) {
   let cartItemContentSettingsQuantityInput = document.createElement("input");
   cartItemContentSettingsQuantityInput.classList.add("itemQuantity");
   cartItemContentSettingsQuantityInput.setAttribute("type", "number");
+  cartItemContentSettingsQuantityInput.setAttribute("name", "itemQuantity");
+  cartItemContentSettingsQuantityInput.setAttribute("min", "1");
+  cartItemContentSettingsQuantityInput.setAttribute("max", "100");
   let cartItemContentSettingsDelete = document.createElement("div");
   cartItemContentSettingsDelete.classList.add(
     "cart__item__content__settings__delete"
@@ -75,9 +78,9 @@ for (let item of cart) {
   cartItem.appendChild(cartItemContent);
   cartItemContent.appendChild(cartItemContentTitlePrice);
   cartItemContentTitlePrice.appendChild(cartItemContentItemName);
-  cartItemContentTitlePrice.appendChild(cartItemContenItemPrice);
+  cartItemContentTitlePrice.appendChild(cartItemContentItemPrice);
   cartItemContentItemName.append(item.name);
-  cartItemContenItemPrice.append(item.price);
+  cartItemContentItemPrice.append(item.price * item.quantity, " €");
   cartItemImgDiv.appendChild(cartItemImg);
   cartItemContent.appendChild(cartItemContentSettings);
   cartItemContentSettings.appendChild(cartItemContentSettingsQuantity);
@@ -88,10 +91,19 @@ for (let item of cart) {
   cartItemContentSettingsQuantity.appendChild(
     cartItemContentSettingsQuantityInput
   );
-  cartItemContentSettingsQuantityInput.append(item.quantity);
+  cartItemContentSettingsQuantityInput.value = item.quantity;
   cartItemContentSettings.appendChild(cartItemContentSettingsDelete);
   cartItemContentSettingsDelete.appendChild(cartItemContentSettingsDeleteItem);
   cartItemContentSettingsDeleteItem.append("Supprimer");
+}
+
+// modifier quantité input = modifier quantité objet dans cart en local storage
+function changeQty() {
+  let cartItemQuantityModified =
+    document.getElementsByClassName("itemQuantity").value;
+  cartItemQuantityModified.addEventListener("change", function () {
+    item.quantity == cartItemQuantityModified;
+  });
 }
 
 //------------------------------------------------ Calculer le total des prix --------------------------------------------------------
