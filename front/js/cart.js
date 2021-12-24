@@ -116,12 +116,15 @@ let cartPrice = document.getElementsByClassName("cart__price");
 
 // champ prénom
 let formFirstName = document.getElementById("firstName");
-formFirstName.addEventListener("onChange", function (e) {
+formFirstName.addEventListener("onInput", function (e) {
   let fistNameValue = e.target.value;
   if (value) {
     isValid = true;
   } else {
     isValid = false;
-    alert("N'utilisez que des lettres et tirets!");
+    let formFirstNameErr = document.getElementById("firstNameErrorMsg");
+    formFirstNameErr.append(
+      "Veuillez utiliser uniquement des lettres en majuscules et minuscules ainsi que le tiret si besoin !"
+    );
   }
 });
