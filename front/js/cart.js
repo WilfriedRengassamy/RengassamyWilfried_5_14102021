@@ -97,12 +97,20 @@ for (let item of cart) {
   cartItemContentSettingsDeleteItem.append("Supprimer");
 }
 
-// modifier quantité input = modifier quantité objet dans cart en local storage
+// modifier quantité input = modifier quantité objet dans cart en localStorage
 function changeQty() {
   let cartItemQuantityModified =
     document.getElementsByClassName("itemQuantity").value;
   cartItemQuantityModified.addEventListener("change", function () {
     item.quantity == cartItemQuantityModified;
+  });
+}
+
+// supprimer un produit du panier en localStorage (localStorage.removeItem) - (addEventListener(change)) - (Element.closest())
+function deleteCartItem() {
+  cartItemContentSettingsDeleteItem.addEventListener("click", function () {
+    let selectedItem = cartItems.closest("section > data-id");
+    localStorage.removeItem();
   });
 }
 
